@@ -1,0 +1,25 @@
+# Datos
+data/raw/*.gz
+data/raw/*.zip
+data/interim/*.feather
+data/final/*.feather
+data/final/*.gz
+
+# Resultados y logs
+results/*/results/tmp/
+logs/
+*.log
+
+# Cache de lenguajes
+__pycache__/
+.Rhistory
+.RData
+*.pyc
+
+# Metadatos del sistema
+.DS_Store
+
+# Snakemake
+.snakemake/
+dag.pdf
+rulegraph.pdf
