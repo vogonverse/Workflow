@@ -1,0 +1,51 @@
+# snakefile principal
+
+# config
+configfile: "config/config.yaml"
+
+# modulos smk
+include: "rules/gexp_gtex.smk"
+include: "rules/drugbank.smk"
+include: "rules/hipathia_gtex.smk"
+include: "rules/drexml.smk"
+
+
+#  salidas finales
+rule all:
+    input:      
+        # los plots (la filtered (?))
+        expand(
+            [
+                "results/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}_v{hipathia_version}_drexml-v{drexml_version}/{disease_id}/metrics.pdf",
+                "results/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}_v{hipathia_version}_drexml-v{drexml_version}/{disease_id}/relevance_heatmap.pdf",
+            ],
+            db_version=config["drugbank"]["versions"],
+            gtex_version=config["gtex"]["versions"],
+            edger_version=config["edger"]["versions"],
+            mg_version=config["mygene"]["versions"],
+            hipathia_version=config["hipathia"]["versions"],
+            drexml_version=config["drexml"]["versions"],
+            disease_id=config["disease"]["ids"],
+        )
+
+
+# regla para crear la estructura de directorios
+rule setup:
+    output:
+        touch("data/.setup_done")
+    params:
+        dirs = [
+            "data/raw",        
+            "data/interim",    
+            "data/final",      
+            "logs",            
+            "results"          
+        ]
+    shell:
+        """
+        for dir in {params.dirs}; do
+            mkdir -p $dir
+        done
+        """
+
+
