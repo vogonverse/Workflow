@@ -1,0 +1,23 @@
+name: py_tfm
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+dependencies:
+  - python=3.10
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - requests
+  - tqdm
+  - click
+  - pyarrow
+  - ipython
+  - pip
+  - pip:
+    - drexml
+    - biothings_client
+    - shap==0.42.0

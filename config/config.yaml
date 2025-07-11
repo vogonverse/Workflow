@@ -1,0 +1,34 @@
+drugbank:
+  versions:
+    - 5-1-12
+
+gtex:
+  versions:
+    - 10
+
+mygene:
+  versions:
+    - 20241128
+
+edger:
+  versions:
+    - 4.0.16
+
+hipathia:
+  versions:
+    - 3.2.0
+
+disease:
+  ids:
+    - "C0015625"
+
+drexml:
+  versions:
+    - 1.1.3
+
+ # la famosa opcion de debug
+debug: true
+  
+  
+  
+  
