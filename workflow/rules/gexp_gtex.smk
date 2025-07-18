@@ -1,16 +1,16 @@
 # reglas para gexp_gtex.smk
 
+
 rule download_gtex:
-    input:
-        script="scripts/downloader.py",
     output:
         "data/raw/gtex_v{gtex_version}.gct.gz",
     conda:
         "../../envs/py.yaml"
     log:
         "logs/download_gtex_{gtex_version}.log"
-    shell:
-        "python {input.script} download-gtex --version {wildcards.gtex_version} --output {output} 2> {log}"
+    script:
+        "../../scripts/snakemake_download_gtex.py"
+
 
 rule normalize_gexp:
     input:
