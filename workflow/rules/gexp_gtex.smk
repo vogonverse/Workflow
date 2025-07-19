@@ -1,7 +1,7 @@
 # reglas para gexp_gtex.smk
 
 
-rule download_gtex:
+rule download_gtex: #
     output:
         "data/raw/gtex_v{gtex_version}.gct.gz",
     conda:
@@ -38,18 +38,27 @@ rule transpose_gtex:
     shell:
         "Rscript --vanilla {input.script} {input.gex} {output} 2> {log}"
 
-rule translate_gtex:
+rule translate_gtex: #
     input:
-        gex="data/interim/gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather",
-        script="scripts/parser.py"
+        "data/interim/gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather"
     output:
         "data/final/genes_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz"
     conda:
         "../../envs/py.yaml"
     log:
         "logs/translate_gtex_{gtex_version}_{edger_version}_{mg_version}.log"
-    shell:
-        "python {input.script} translate --kind gtex {input.gex} {output} 2> {log}"
+    script:
+        "../../scripts/snakemake_translate_gtex.py"
+
+
+
+
+
+
+
+
+
+
 
 
 
