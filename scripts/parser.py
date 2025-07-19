@@ -177,32 +177,58 @@ def main():
     print(f"Running drugbank parser {THIS_VERSION}")
 
 
-@main.command()
-@click.argument("path", type=click.Path(exists=True))
-@click.argument("output", type=click.Path(exists=False))
-@click.option("--kind", type=click.Choice(["drugbank", "gtex"], case_sensitive=False))
-def translate(path, output, kind):
-    """Gene translation tool using mygene."""
+def translate(input_path, output_path, kind): # sin click
+    """Gene translation tool using mygene.
+    
+    Args:
+        input_path: Path to input file
+        output_path: Path to output file
+        kind: Type of data: drugbank or gtex
+    """
     print("Running mygene translation tool.")
 
-    path = Path(path)
-    output = Path(output)
+    input_path = Path(input_path)
+    output_path = Path(output_path)
 
     kind = kind.lower()
     if kind == "drugbank":
-        data = pd.read_csv(path, sep="\t")
+        data = pd.read_csv(input_path, sep="\t")
         ids = data["uniprot_id"].unique()
         this_source = "uniprot"
         this_target = "entrezgene"
     elif kind == "gtex":
-        data = pd.read_feather(path)
+        data = pd.read_feather(input_path)
         ids = data.columns[data.columns.str.startswith("X")].str.replace("X", "")
         this_source = "entrezgene"
         this_target = "symbol"
+    else:
+        raise ValueError(f"Unknown kind: {kind}. Must be 'drugbank' or 'gtex'")
 
     genes_df = convert_gene_ids(ids, source=this_source, target=this_target)
-    genes_df.to_csv(output, sep="\t", index=False)
-    print(f"Wrote {output}")
+    genes_df.to_csv(output_path, sep="\t", index=False)
+    print(f"Wrote {output_path}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @main.command()
