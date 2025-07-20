@@ -1,19 +1,16 @@
 # reglas para drugbank.smk
 
-rule download_drugbank:
+rule download_drugbank: #
     input:
         setup="data/.setup_done"
     output:
         "data/raw/drugbank_{db_version}.zip"
-    params:
-        script="scripts/parser.py"
     conda:
         "../../envs/py.yaml"
     log:
         "logs/download_drugbank_{db_version}.log"
-    shell:
-        "python {params.script} download-drugbank --version {wildcards.db_version} --filename {output} > {log} 2>&1"
-
+    script:
+        "../../scripts/snakemake_download_drugbank.py"
 
 
 rule parse_drugbank:
@@ -22,14 +19,12 @@ rule parse_drugbank:
         check="data/interim/drugbank_{db_version}.checked"
     output:
         "data/interim/drugbank_{db_version}.tsv.gz"
-    params:
-        script="scripts/parser.py"
     conda:
         "../../envs/py.yaml"
     log:
         "logs/parse_drugbank_{db_version}.log"
-    shell:
-        "python {params.script} parse {input.xml} {output} > {log} 2>&1"
+    script:
+        "../../scripts/snakemake_parse_drugbank.py"
 
 
 
@@ -52,12 +47,10 @@ rule translate_drugbank:
 
 rule filter_drugbank:
     input:
-        #dbank = rules.parse_drugbank.output,
         dbank = rules.parse_drugbank.output,
         dbank_genes = rules.translate_drugbank.output,
         gtex_genes = rules.translate_gtex.output,
         script = "scripts/parser.py",
-       # integrity_check = "data/interim/drugbank_{db_version}.checked"  # tiene que existir!
     output:
         genes_filt = "data/final/genes-drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
         db_filt = "data/final/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
@@ -73,8 +66,6 @@ rule filter_drugbank:
             --gtex-genes-path {input.gtex_genes} \
             {output.db_filt} {output.genes_filt} > {log} 2>&1
         """
-             
-        
 
 
 rule check_drugbank_integrity:
