@@ -212,25 +212,6 @@ def translate(input_path, output_path, kind): # sin click
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @main.command()
 @click.argument("drugbank-output", type=click.Path(exists=False), nargs=1)
 @click.argument("genes-output", type=click.Path(exists=False), nargs=1)
@@ -269,12 +250,16 @@ def filter_db(
     genes_gtex.to_csv(genes_output, sep="\t", index=False)
 
 
-@main.command()
-@click.argument("xml-path", type=click.Path(exists=True))
-@click.argument("output", type=click.Path(exists=False))
-@click.option("--use-groups", is_flag=True, default=False, help="number of greetings")
-def parse(xml_path, output, use_groups):
-    """Drugbank parse XML and save to TSV."""
+
+# sin click
+def parse(xml_path, output_path, use_groups=False):
+    """Drugbank parse XML and save to TSV.
+    
+    Args:
+        xml_path: Path to drugbank XML zip file
+        output_path: Path for output TSV file
+        use_groups: Whether to include protein groups
+    """
     print("Running XML parser.")
     xml_path = Path(xml_path)
     with zipfile.ZipFile(xml_path) as this_zip_file:
@@ -283,53 +268,50 @@ def parse(xml_path, output, use_groups):
     root = tree.getroot()
 
     drugbank_df = build_drug_dataset(root)
-
     protein_df = build_protein_df(root, use_groups=use_groups)
 
     db_df = drugbank_df.merge(protein_df, how="inner")
-    db_df.to_csv(output, sep="\t", index=False)
-    print(f"Wrote {output}")
+    db_df.to_csv(output_path, sep="\t", index=False)
+    print(f"Wrote {output_path}")
 
 
-@main.command()
-@click.option("--version", default="5-1-12", help="DrugBank version.")
-@click.option("--user", help="Your DrugBank username.")
-@click.option(
-    "--password",
-    help="Your DrugBank password.",
-)
-@click.option("--filename", default="drugbank.zip", help="The name of the output file.")
-def download_drugbank(version, user, password, filename):
-    """Downloads the DrugBank full database."""
-
+# sin click
+def download_drugbank(version="5-1-12", user=None, password=None, 
+                     filename="drugbank.zip"):
+    """Downloads the DrugBank full database.
+    
+    Args:
+        version: DrugBank version
+        user: DrugBank username
+        password: DrugBank password 
+        filename: Output filename 
+    """
     if not user or not password:
         try:
             cfg = configparser.ConfigParser()
             cfg.read(Path.home().joinpath(".config", "drugbank.ini"))
         except Exception as e:
-            click.echo(e)
-            sys.exit(
+            print(e)
+            raise RuntimeError(
                 "Drugbank credentials not provided or .config/drugbank.ini not filled."
             )
         user = cfg["drugbank"]["username"]
         password = cfg["drugbank"]["password"]
 
     url = f"https://go.drugbank.com/releases/{version}/downloads/all-full-database"
-    click.echo(url)
+    print(url)
 
     try:
         response = requests.get(url, auth=(user, password), stream=True)
-        response.raise_for_status()  # Raise an exception for bad status codes
+        response.raise_for_status()
 
         with open(filename, "wb") as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
 
-        click.echo(f"DrugBank database downloaded successfully to {filename}")
+        print(f"DrugBank database downloaded successfully to {filename}")
 
     except requests.exceptions.RequestException as e:
-        click.echo(f"Error downloading DrugBank database: {e}")
-
-
-if __name__ == "__main__":
-    main()
+        print(f"Error downloading DrugBank database: {e}")
+        raise
+    
