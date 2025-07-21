@@ -26,18 +26,18 @@ rule normalize_gexp: #
         "../../scripts/normalize_gexp.R"
 
 
-rule transpose_gtex:
+rule transpose_gtex: #
     input:
-        gex="data/interim/genesasrows_gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather",
-        script="scripts/transpose_gtex.R"
+        gex="data/interim/genesasrows_gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather"
     output:
         "data/interim/gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather"
     conda:
         "../../envs/r.yaml"
     log:
         "logs/transpose_gtex_{gtex_version}_{edger_version}.log"
-    shell:
-        "Rscript --vanilla {input.script} {input.gex} {output} 2> {log}"
+    script:
+        "../../scripts/transpose_gtex.R"
+
 
 rule translate_gtex: #
     input:
