@@ -210,23 +210,23 @@ def translate(input_path, output_path, kind): # sin click
 
 
 
-
-
-@main.command()
-@click.argument("drugbank-output", type=click.Path(exists=False), nargs=1)
-@click.argument("genes-output", type=click.Path(exists=False), nargs=1)
-@click.option("--drugbank-path", type=click.Path(exists=True))
-@click.option("--drugbank-genes-path", type=click.Path(exists=True))
-@click.option("--gtex-genes-path", type=click.Path(exists=True))
-def filter_db(
-    drugbank_output, genes_output, drugbank_path, drugbank_genes_path, gtex_genes_path
-):
-    """Filter the dataset using targets with a known action."""
+# sin click
+def filter_db(drugbank_output, genes_output, drugbank_path, drugbank_genes_path, gtex_genes_path):
+    """Filter the dataset using targets with a known action.
+    
+    Args:
+        drugbank_output: Path for filtered drugbank output
+        genes_output: Path for filtered genes output
+        drugbank_path: Path to drugbank parsed data
+        drugbank_genes_path: Path to drugbank genes translation
+        gtex_genes_path: Path to gtex genes translation
+    """
     print("Running drugbank target filter.")
 
     data = pd.read_csv(drugbank_path, sep="\t")
     genes_drugbank = read_genes_df(drugbank_genes_path)
     genes_gtex = read_genes_df(gtex_genes_path)
+    
     data = (
         data.merge(genes_drugbank, how="inner")
         .merge(genes_gtex, how="inner")
@@ -248,6 +248,7 @@ def filter_db(
         data.entrez_id.unique()
     )
     genes_gtex.to_csv(genes_output, sep="\t", index=False)
+
 
 
 
