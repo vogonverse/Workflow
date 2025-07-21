@@ -43,27 +43,23 @@ rule translate_drugbank: #
 
 
 
-rule filter_drugbank:
+
+rule filter_drugbank: #
     input:
-        dbank = rules.parse_drugbank.output,
-        dbank_genes = rules.translate_drugbank.output,
-        gtex_genes = rules.translate_gtex.output,
-        script = "scripts/parser.py",
+        dbank = "data/interim/drugbank_{db_version}.tsv.gz",
+        dbank_genes = "data/final/genes_drugbank-v{db_version}_mygene-v{mg_version}.tsv.gz",
+        gtex_genes = "data/final/genes_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
     output:
         genes_filt = "data/final/genes-drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
         db_filt = "data/final/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
     conda:
-        "../../envs/py.yaml",
+        "../../envs/py.yaml"
     log:
-        "logs/filter_drugbank_{db_version}_{gtex_version}_{edger_version}_{mg_version}.log",
-    shell:
-        """
-        python {input.script} filter-db \
-            --drugbank-path {input.dbank} \
-            --drugbank-genes-path {input.dbank_genes} \
-            --gtex-genes-path {input.gtex_genes} \
-            {output.db_filt} {output.genes_filt} > {log} 2>&1
-        """
+        "logs/filter_drugbank_{db_version}_{gtex_version}_{edger_version}_{mg_version}.log"
+    script:
+        "../../scripts/snakemake_filter_drugbank.py"
+
+
 
 
 rule check_drugbank_integrity:
