@@ -13,7 +13,7 @@ rule download_drugbank: #
         "../../scripts/snakemake_download_drugbank.py"
 
 
-rule parse_drugbank:
+rule parse_drugbank: #
     input:
         xml="data/raw/drugbank_{db_version}.zip",
         check="data/interim/drugbank_{db_version}.checked"
@@ -28,22 +28,20 @@ rule parse_drugbank:
 
 
 
-rule translate_drugbank:
+rule translate_drugbank: #
     input:
         parsed="data/interim/drugbank_{db_version}.tsv.gz"
     output:
         "data/final/genes_drugbank-v{db_version}_mygene-v{mg_version}.tsv.gz"
-    params:
-        script="scripts/parser.py"
     conda:
         "../../envs/py.yaml"
     log:
         "logs/translate_drugbank_{db_version}_{mg_version}.log"
-    shell:
-        "python {params.script} translate --kind drugbank {input.parsed} {output} > {log} 2>&1"
+    script:
+        "../../scripts/snakemake_translate_drugbank.py"
 
-    
-  
+
+
 
 rule filter_drugbank:
     input:
