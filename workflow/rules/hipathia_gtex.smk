@@ -1,9 +1,8 @@
 # reglas para hipathia_gtex.smk
 
-rule compute_hipathia:
+rule compute_hipathia: #
     input:
-        gexp_norm = rules.normalize_gexp.output,
-        script = "scripts/hipathize.R"
+        gexp_norm = "data/interim/genesasrows_gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather",
     output:
         pathvals = "data/final/pathvals_gtex-v{gtex_version}_edger-v{edger_version}_hipathia-v{hipathia_version}.feather",
         pathvals_norm = "data/final/pathvals_gtex-v{gtex_version}_edger-v{edger_version}_hipathia-norm-v{hipathia_version}.feather"
@@ -11,8 +10,8 @@ rule compute_hipathia:
         "../../envs/r.yaml"
     log:
         "logs/compute_hipathia_{gtex_version}_{edger_version}_{hipathia_version}.log"
-    shell:
-        "Rscript --vanilla {input.script} {input.gexp_norm} {output.pathvals} {output.pathvals_norm} > {log} 2>&1"
+    script:
+        "../../scripts/hipathize.R"
 
 
 rule build_disease:
