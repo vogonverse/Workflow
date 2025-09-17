@@ -39,7 +39,8 @@ rule setup:
             "data/interim",    
             "data/final",      
             "logs",            
-            "results"          
+            "results",
+            "benchmarks"          
         ]
     shell:
         """
