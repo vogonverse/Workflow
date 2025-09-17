@@ -1,5 +1,7 @@
 # reglas para drexml.smk
 
+
+
 rule repurpose:
     input:
         disease="results/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}_v{hipathia_version}_drexml-v{drexml_version}/{disease_id}/disease.env",
@@ -12,9 +14,14 @@ rule repurpose:
             )
         ,
     conda:
-        "../../envs/py.yaml"  
+        "../../envs/py.yaml" 
+    resources:
+        mem_gb=200         #cluster
+    threads: 20            
     log:
         "logs/repurpose_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.log",
+    benchmark:
+        "benchmarks/repurpose_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.txt"
     shell:
         """
         drexml run {input.disease} > {log} 2>&1
@@ -34,6 +41,8 @@ rule plot_drexml:
         "../../envs/py.yaml"  
     log:
         "logs/plot_drexml_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.log",
+    benchmark:
+        "benchmarks/plot_drexml_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.txt"
     shell:
         """
         drexml plot {input.sel} {input.rel} {input.res} {params.out} > {log} 2>&1
