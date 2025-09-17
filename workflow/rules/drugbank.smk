@@ -1,6 +1,6 @@
 # reglas para drugbank.smk
 
-rule download_drugbank: #
+rule download_drugbank: 
     input:
         setup="data/.setup_done"
     output:
@@ -13,7 +13,7 @@ rule download_drugbank: #
         "../../scripts/snakemake_download_drugbank.py"
 
 
-rule parse_drugbank: #
+rule parse_drugbank: 
     input:
         xml="data/raw/drugbank_{db_version}.zip",
         check="data/interim/drugbank_{db_version}.checked"
@@ -23,12 +23,14 @@ rule parse_drugbank: #
         "../../envs/py.yaml"
     log:
         "logs/parse_drugbank_{db_version}.log"
+    benchmark:
+        "benchmarks/parse_drugbank_{db_version}.txt"
     script:
         "../../scripts/snakemake_parse_drugbank.py"
 
 
 
-rule translate_drugbank: #
+rule translate_drugbank: 
     input:
         parsed="data/interim/drugbank_{db_version}.tsv.gz"
     output:
@@ -37,6 +39,8 @@ rule translate_drugbank: #
         "../../envs/py.yaml"
     log:
         "logs/translate_drugbank_{db_version}_{mg_version}.log"
+    benchmark:
+        "benchmarks/translate_drugbank_{db_version}_{mg_version}.txt"
     script:
         "../../scripts/snakemake_translate_drugbank.py"
 
@@ -44,7 +48,7 @@ rule translate_drugbank: #
 
 
 
-rule filter_drugbank: #
+rule filter_drugbank: 
     input:
         dbank = "data/interim/drugbank_{db_version}.tsv.gz",
         dbank_genes = "data/final/genes_drugbank-v{db_version}_mygene-v{mg_version}.tsv.gz",
@@ -56,6 +60,8 @@ rule filter_drugbank: #
         "../../envs/py.yaml"
     log:
         "logs/filter_drugbank_{db_version}_{gtex_version}_{edger_version}_{mg_version}.log"
+    benchmark:
+        "benchmarks/filter_drugbank_{db_version}_{gtex_version}_{edger_version}_{mg_version}.txt"
     script:
         "../../scripts/snakemake_filter_drugbank.py"
 
@@ -80,7 +86,7 @@ rule check_drugbank_integrity:
         if [ $? -eq 0 ]; then
             touch {output}
         else
-            echo "checksum de verificacion caca" >&2
+            echo "No se ha podido crear checksum de verificacion" >&2
             exit 1
         fi
         """
