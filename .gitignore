@@ -22,3 +22,7 @@ __pycache__/
 # Snakemake
 .snakemake/
 
+data/
+results/
+benchmarks/
+logs/
