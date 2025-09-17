@@ -54,8 +54,8 @@ rownames(expreset_raw) <- expreset_raw$Name
 expreset_raw[c("Name", "Description")] <- list(NULL)
 
 # selección de solo 100 muestras del DF para no saturar la RAM
-set.seed(42)  # para reproducibilidad
-expreset_raw <- expreset_raw[, sample(1:ncol(expreset_raw), 100)]  # aleatoria
+#set.seed(42)  # para reproducibilidad
+#expreset_raw <- expreset_raw[, sample(1:ncol(expreset_raw), 100)]  # aleatoria
 
 # lognormalizar conteos 
 dge <- DGEList(counts = expreset_raw)
