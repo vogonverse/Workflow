@@ -8,6 +8,9 @@ rule compute_hipathia:
         pathvals_norm = "data/final/pathvals_gtex-v{gtex_version}_edger-v{edger_version}_hipathia-norm-v{hipathia_version}.feather"
     conda:
         "../../envs/r.yaml"
+    resources:
+        runtime=600,
+        mem_mb=100_000,
     log:
         "logs/compute_hipathia_{gtex_version}_{edger_version}_{hipathia_version}.log"
     benchmark:

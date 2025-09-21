@@ -23,6 +23,9 @@ rule parse_drugbank:
         "../../envs/py.yaml"
     log:
         "logs/parse_drugbank_{db_version}.log"
+    threads: 8
+    resources:
+        mem_mb=32_000
     benchmark:
         "benchmarks/parse_drugbank_{db_version}.txt"
     script:
@@ -58,6 +61,9 @@ rule filter_drugbank:
         db_filt = "data/final/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz",
     conda:
         "../../envs/py.yaml"
+    resources:
+        runtime=60,
+        mem_mb=32_000,
     log:
         "logs/filter_drugbank_{db_version}_{gtex_version}_{edger_version}_{mg_version}.log"
     benchmark:

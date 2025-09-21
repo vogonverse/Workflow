@@ -19,6 +19,9 @@ rule normalize_gexp:
         "data/interim/genesasrows_gexp_gtex-v{gtex_version}_edger-v{edger_version}.feather"
     conda:
         "../../envs/r.yaml"
+    resources:
+        runtime=600,
+        mem_mb=100_000,
     log:
         "logs/normalize_gexp_{gtex_version}_{edger_version}.log"
     benchmark:
@@ -36,6 +39,9 @@ rule transpose_gtex:
         "../../envs/r.yaml"
     log:
         "logs/transpose_gtex_{gtex_version}_{edger_version}.log"
+    resources:
+        runtime=60,
+        mem_mb=100_000,
     benchmark:
         "benchmarks/transpose_gtex_{gtex_version}_{edger_version}.txt"
     script:
@@ -49,6 +55,9 @@ rule translate_gtex:
         "data/final/genes_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}.tsv.gz"
     conda:
         "../../envs/py.yaml"
+    resources:
+        runtime=60,
+        mem_mb=100_000,
     log:
         "logs/translate_gtex_{gtex_version}_{edger_version}_{mg_version}.log"
     benchmark:

@@ -16,7 +16,8 @@ rule repurpose:
     conda:
         "../../envs/py.yaml" 
     resources:
-        mem_gb=200         #cluster
+        mem_mb=100_000,         #cluster
+        runtime=1200, # minutes
     threads: 20            
     log:
         "logs/repurpose_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.log",
