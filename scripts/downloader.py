@@ -13,13 +13,18 @@ THIS_VERSION = 1.0
 
 def build_gtex_url(version, qcv="RNASeQCv2.4.2"):
     """Build gtex url from versions."""
+    version_fname = f"v_{version}"
+    if int(version) == 8:
+        qcv = "RNASeQCv1.1.9"
+        version_fname = "2017-06-05_v8"
+
     url_parts = [
         "https://storage.googleapis.com",
         "adult-gtex",
         "bulk-gex",
         f"v{version}",
         "rna-seq",
-        f"GTEx_Analysis_v{version}_{qcv}_gene_reads.gct.gz",
+        f"GTEx_Analysis_{version_fname}_{qcv}_gene_reads.gct.gz",
     ]
     return "/".join(url_parts)
 
