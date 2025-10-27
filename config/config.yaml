@@ -1,9 +1,11 @@
 drugbank:
   versions:
+    - 5-1-10
     - 5-1-12
 
 gtex:
   versions:
+    - 8
     - 10
 
 mygene:
@@ -21,6 +23,7 @@ hipathia:
 disease:
   ids:
     - "C0015625"
+    - "C0393484"
 
 drexml:
   versions:
