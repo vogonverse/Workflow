@@ -23,7 +23,7 @@ rule build_disease:
     input:
         genes = rules.filter_drugbank.output.genes_filt,
         gex = rules.transpose_gtex.output,
-        pathvals = rules.compute_hipathia.output.pathvals
+        pathvals = rules.compute_hipathia.output.pathvals_norm
     output:
         "results/drugbank-v{db_version}_gtex-v{gtex_version}_edger-v{edger_version}_mygene-v{mg_version}_v{hipathia_version}_drexml-v{drexml_version}/{disease_id}/disease.env"
     conda:
@@ -33,4 +33,4 @@ rule build_disease:
     benchmark:
         "benchmarks/build_disease_{db_version}_{gtex_version}_{edger_version}_{mg_version}_{hipathia_version}_{drexml_version}_{disease_id}.txt"
     shell:
-        "echo -e 'disease_id={wildcards.disease_id}\nuse_physio=false\npathvals={input.pathvals}\ngene_exp=data/interim/gexp_gtex-v{wildcards.gtex_version}_edger-v{wildcards.edger_version}.feather\ngenes={input.genes}' > {output} 2> {log}"
+        "echo -e 'disease_id={wildcards.disease_id}\nuse_physio=false\nactivity_normalizer=true\npathvals={input.pathvals}\ngene_exp=data/interim/gexp_gtex-v{wildcards.gtex_version}_edger-v{wildcards.edger_version}.feather\ngenes={input.genes}' > {output} 2> {log}"

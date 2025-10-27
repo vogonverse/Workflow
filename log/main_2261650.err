@@ -1,0 +1,256 @@
+host: c23
+Building DAG of jobs...
+You are running snakemake in a SLURM job context. This is not recommended, as it may lead to unexpected behavior. Please run Snakemake directly on the login node.
+SLURM run ID: 4dfaced4-8d1d-436b-b9ca-f682a393f7b0
+Using shell: /usr/bin/bash
+Provided remote nodes: 9223372036854775807
+Job stats:
+job                count
+---------------  -------
+all                    1
+build_disease          4
+filter_drugbank        1
+plot_drexml            4
+repurpose              4
+total                 14
+
+Select jobs to execute...
+Execute 4 jobs...
+
+[Mon Oct  6 11:41:50 2025]
+rule build_disease:
+    input: data/final/genes-drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128.tsv.gz, data/interim/gexp_gtex-v10_edger-v4.0.16.feather, data/final/pathvals_gtex-v10_edger-v4.0.16_hipathia-v3.2.0.feather
+    output: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    log: logs/build_disease_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 34
+    benchmark: benchmarks/build_disease_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env; Code has changed since last execution
+    wildcards: db_version=5-1-12, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=7662, mem_mib=7308, disk_mb=7662, disk_mib=7308, tmpdir=<TBD>
+No SLURM account given, trying to guess.
+Unable to guess SLURM account. Trying to proceed without.
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 34 has been submitted with SLURM jobid 2261651 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_build_disease/5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261651.log).
+
+[Mon Oct  6 11:41:51 2025]
+rule build_disease:
+    input: data/final/genes-drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz, data/interim/gexp_gtex-v8_edger-v4.0.16.feather, data/final/pathvals_gtex-v8_edger-v4.0.16_hipathia-v3.2.0.feather
+    output: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    log: logs/build_disease_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 3
+    benchmark: benchmarks/build_disease_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env; Code has changed since last execution
+    wildcards: db_version=5-1-10, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=6780, mem_mib=6466, disk_mb=6780, disk_mib=6466, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 3 has been submitted with SLURM jobid 2261652 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_build_disease/5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261652.log).
+
+[Mon Oct  6 11:41:51 2025]
+rule filter_drugbank:
+    input: data/interim/drugbank_5-1-12.tsv.gz, data/final/genes_drugbank-v5-1-12_mygene-v20241128.tsv.gz, data/final/genes_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz
+    output: data/final/genes-drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz, data/final/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz
+    log: logs/filter_drugbank_5-1-12_8_4.0.16_20241128.log
+    jobid: 27
+    benchmark: benchmarks/filter_drugbank_5-1-12_8_4.0.16_20241128.txt
+    reason: Missing output files: data/final/genes-drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz
+    wildcards: db_version=5-1-12, gtex_version=8, edger_version=4.0.16, mg_version=20241128
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60
+Job 27 has been submitted with SLURM jobid 2261653 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_filter_drugbank/5-1-12_8_4.0.16_20241128/2261653.log).
+
+[Mon Oct  6 11:41:51 2025]
+rule build_disease:
+    input: data/final/genes-drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128.tsv.gz, data/interim/gexp_gtex-v10_edger-v4.0.16.feather, data/final/pathvals_gtex-v10_edger-v4.0.16_hipathia-v3.2.0.feather
+    output: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    log: logs/build_disease_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 17
+    benchmark: benchmarks/build_disease_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env; Code has changed since last execution
+    wildcards: db_version=5-1-10, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=7662, mem_mib=7308, disk_mb=7662, disk_mib=7308, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 17 has been submitted with SLURM jobid 2261654 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_build_disease/5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261654.log).
+[Mon Oct  6 11:43:55 2025]
+Finished jobid: 34 (Rule: build_disease)
+1 of 14 steps (7%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Oct  6 11:43:55 2025]
+rule repurpose:
+    input: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    output: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/tmp
+    log: logs/repurpose_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 33
+    benchmark: benchmarks/repurpose_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv; Input files updated by another job: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    wildcards: db_version=5-1-12, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    threads: 20
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=1200
+Job 33 has been submitted with SLURM jobid 2261656 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_repurpose/5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261656.log).
+[Mon Oct  6 11:43:55 2025]
+Finished jobid: 3 (Rule: build_disease)
+2 of 14 steps (14%) done
+[Mon Oct  6 11:43:56 2025]
+Finished jobid: 17 (Rule: build_disease)
+3 of 14 steps (21%) done
+Select jobs to execute...
+Execute 2 jobs...
+
+[Mon Oct  6 11:43:56 2025]
+rule repurpose:
+    input: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    output: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/tmp
+    log: logs/repurpose_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 2
+    benchmark: benchmarks/repurpose_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv; Input files updated by another job: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    wildcards: db_version=5-1-10, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    threads: 20
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=1200
+Job 2 has been submitted with SLURM jobid 2261657 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_repurpose/5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261657.log).
+
+[Mon Oct  6 11:43:56 2025]
+rule repurpose:
+    input: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    output: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/tmp
+    log: logs/repurpose_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 16
+    benchmark: benchmarks/repurpose_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv; Input files updated by another job: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    wildcards: db_version=5-1-10, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    threads: 20
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=1200
+Job 16 has been submitted with SLURM jobid 2261658 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_repurpose/5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261658.log).
+[Mon Oct  6 11:45:26 2025]
+Finished jobid: 27 (Rule: filter_drugbank)
+4 of 14 steps (29%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Oct  6 11:45:26 2025]
+rule build_disease:
+    input: data/final/genes-drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz, data/interim/gexp_gtex-v8_edger-v4.0.16.feather, data/final/pathvals_gtex-v8_edger-v4.0.16_hipathia-v3.2.0.feather
+    output: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    log: logs/build_disease_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 26
+    benchmark: benchmarks/build_disease_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env; Input files updated by another job: data/final/genes-drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128.tsv.gz
+    wildcards: db_version=5-1-12, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=6780, mem_mib=6466, disk_mb=6780, disk_mib=6466, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 26 has been submitted with SLURM jobid 2261659 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_build_disease/5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261659.log).
+[Mon Oct  6 11:46:56 2025]
+Finished jobid: 26 (Rule: build_disease)
+5 of 14 steps (36%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Oct  6 11:46:56 2025]
+rule repurpose:
+    input: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    output: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/tmp
+    log: logs/repurpose_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 25
+    benchmark: benchmarks/repurpose_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv; Input files updated by another job: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/disease.env
+    wildcards: db_version=5-1-12, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    threads: 20
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=1200
+Job 25 has been submitted with SLURM jobid 2261660 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_repurpose/5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261660.log).
+[Tue Oct  7 02:36:12 2025]
+Finished jobid: 25 (Rule: repurpose)
+6 of 14 steps (43%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct  7 02:36:12 2025]
+rule plot_drexml:
+    input: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    output: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf
+    log: logs/plot_drexml_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 24
+    benchmark: benchmarks/plot_drexml_5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf; Input files updated by another job: results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    wildcards: db_version=5-1-12, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 24 has been submitted with SLURM jobid 2261715 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_plot_drexml/5-1-12_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261715.log).
+[Tue Oct  7 02:39:52 2025]
+Finished jobid: 24 (Rule: plot_drexml)
+7 of 14 steps (50%) done
+[Tue Oct  7 03:04:25 2025]
+Finished jobid: 2 (Rule: repurpose)
+8 of 14 steps (57%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct  7 03:04:25 2025]
+rule plot_drexml:
+    input: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    output: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf
+    log: logs/plot_drexml_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 1
+    benchmark: benchmarks/plot_drexml_5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf; Input files updated by another job: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv
+    wildcards: db_version=5-1-10, gtex_version=8, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 1 has been submitted with SLURM jobid 2261716 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_plot_drexml/5-1-10_8_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261716.log).
+[Tue Oct  7 03:08:05 2025]
+Finished jobid: 1 (Rule: plot_drexml)
+9 of 14 steps (64%) done
+[Tue Oct  7 05:32:44 2025]
+Finished jobid: 33 (Rule: repurpose)
+10 of 14 steps (71%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct  7 05:32:44 2025]
+rule plot_drexml:
+    input: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    output: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf
+    log: logs/plot_drexml_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 32
+    benchmark: benchmarks/plot_drexml_5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf; Input files updated by another job: results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    wildcards: db_version=5-1-12, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 32 has been submitted with SLURM jobid 2261726 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_plot_drexml/5-1-12_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261726.log).
+[Tue Oct  7 05:35:15 2025]
+Finished jobid: 16 (Rule: repurpose)
+11 of 14 steps (79%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct  7 05:35:15 2025]
+rule plot_drexml:
+    input: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    output: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf
+    log: logs/plot_drexml_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.log
+    jobid: 15
+    benchmark: benchmarks/plot_drexml_5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625.txt
+    reason: Missing output files: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf; Input files updated by another job: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_summary_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/shap_selection_symbol.tsv, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/results/stability_results_symbol.tsv
+    wildcards: db_version=5-1-10, gtex_version=10, edger_version=4.0.16, mg_version=20241128, hipathia_version=3.2.0, drexml_version=1.1.3, disease_id=C0015625
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>
+No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+Job 15 has been submitted with SLURM jobid 2261727 (log: /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/slurm_logs/rule_plot_drexml/5-1-10_10_4.0.16_20241128_3.2.0_1.1.3_C0015625/2261727.log).
+[Tue Oct  7 05:35:55 2025]
+Finished jobid: 32 (Rule: plot_drexml)
+12 of 14 steps (86%) done
+[Tue Oct  7 05:39:35 2025]
+Finished jobid: 15 (Rule: plot_drexml)
+13 of 14 steps (93%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Oct  7 05:39:35 2025]
+localrule all:
+    input: results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf
+    jobid: 0
+    reason: Input files updated by another job: results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-10_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf, results/drugbank-v5-1-12_gtex-v8_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/relevance_heatmap.pdf, results/drugbank-v5-1-10_gtex-v10_edger-v4.0.16_mygene-v20241128_v3.2.0_drexml-v1.1.3/C0015625/metrics.pdf
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/tmp
+[Tue Oct  7 05:39:35 2025]
+Finished jobid: 0 (Rule: all)
+14 of 14 steps (100%) done
+Complete log(s): /mnt/lustre/home/cloucera/projects/Workflow/.snakemake/log/2025-10-06T114101.302950.snakemake.log
